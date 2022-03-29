@@ -98,9 +98,7 @@ document
         .querySelector('.pizzaInfo--size.selected')
         .getAttribute('data-key')
     );
-
     let identifier = pizzaJson[modalKey].id + '@' + size;
-
     let key = cart.findIndex(item => item.identifier == identifier);
 
     if (key > -1) {
@@ -113,6 +111,39 @@ document
         quantidade: modalQuantidade
       });
     }
-
+    updateCart();
     closeModal();
   });
+
+function updateCart() {
+  if (cart.length > 0) {
+    document.querySelector('aside').classList.add('show');
+    document.querySelector('.cart').innerHTML = '';
+    for (let i in cart) {
+      let pizzaItem = pizzaJson.find(item => item.id == cart[i].id);
+      let cartItem = document
+        .querySelector('.models .cart--item')
+        .cloneNode(true);
+      document.querySelector('.cart').append(cartItem);
+
+      let pizzaSizeName;
+      switch (cart[i].size) {
+        case 0:
+          pizzaSizeName = 'P';
+          break;
+        case 1:
+          pizzaSizeName = 'M';
+          break;
+        case 2:
+          pizzaSizeName = 'G';
+          break;
+      }
+      let pizzaName = `${pizzaItem.name} (${pizzaSizeName})`;
+
+      cartItem.querySelector('img').src = pizzaItem.img;
+      cartItem.querySelector('.cart--item-nome').innerHTML = pizzaName;
+    }
+  } else {
+    document.querySelector('aside').classList.remove('show');
+  }
+}
