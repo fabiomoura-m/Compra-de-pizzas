@@ -71,3 +71,11 @@ document.querySelector('.pizzaInfo--qtmais').addEventListener('click', () => {
   modalQuantidade++;
   document.querySelector('.pizzaInfo--qt').innerHTML = modalQuantidade;
 });
+document.querySelectorAll('.pizzaInfo--size').forEach((size, sizeIndex) => {
+  size.addEventListener('click', e => {
+    document
+      .querySelector('.pizzaInfo--size.selected')
+      .classList.remove('selected');
+    size.classList.add('selected');
+  });
+});
