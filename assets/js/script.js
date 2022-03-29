@@ -61,3 +61,13 @@ document
   .forEach(item => {
     item.addEventListener('click', closeModal);
   });
+document.querySelector('.pizzaInfo--qtmenos').addEventListener('click', () => {
+  if (modalQuantidade > 1) {
+    modalQuantidade--;
+    document.querySelector('.pizzaInfo--qt').innerHTML = modalQuantidade;
+  }
+});
+document.querySelector('.pizzaInfo--qtmais').addEventListener('click', () => {
+  modalQuantidade++;
+  document.querySelector('.pizzaInfo--qt').innerHTML = modalQuantidade;
+});
