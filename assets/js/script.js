@@ -1,5 +1,6 @@
-const modalQuantidade = 1;
+let modalQuantidade = 1;
 
+// Listagem das pizzas
 pizzaJson.map((item, index) => {
   let pizzaItem = document.querySelector('.models .pizza-item').cloneNode(true);
 
@@ -44,7 +45,19 @@ pizzaJson.map((item, index) => {
       }
       size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex];
     }); //percorre os itens e adiciona os tamanhos
-
     document.querySelector('.pizzaInfo--qt').innerHTML = modalQuantidade;
   });
 });
+
+// Eventos do Modal
+function closeModal() {
+  document.querySelector('.pizzaWindowArea').style.opacity = 0;
+  setTimeout(() => {
+    document.querySelector('.pizzaWindowArea').style.display = 'none';
+  }, 200);
+}
+document
+  .querySelectorAll('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton')
+  .forEach(item => {
+    item.addEventListener('click', closeModal);
+  });
